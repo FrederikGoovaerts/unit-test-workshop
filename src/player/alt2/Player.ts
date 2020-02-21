@@ -1,9 +1,9 @@
-import { Song } from "./Song";
+import { SongInterface } from "./Song";
 
 export interface PlayerInterface {
-    readonly currentSong: Song | undefined;
+    readonly currentSong: SongInterface | undefined;
     readonly isPlaying: boolean;
-    play(song: Song): void;
+    play(song: SongInterface): void;
     pause(): void;
     resume(): void;
     makeFavorite(): void;
@@ -11,14 +11,14 @@ export interface PlayerInterface {
 
 export class Player implements PlayerInterface {
     private _isPlaying: boolean;
-    private _currentSong: Song | undefined;
+    private _currentSong: SongInterface | undefined;
 
-    constructor(initialSong?: Song) {
+    constructor(initialSong?: SongInterface) {
         this._currentSong = initialSong;
-        this._isPlaying = initialSong === undefined;
+        this._isPlaying = initialSong !== undefined;
     }
 
-    get currentSong(): Song | undefined {
+    get currentSong(): SongInterface | undefined {
         return this._currentSong;
     }
 
@@ -26,7 +26,7 @@ export class Player implements PlayerInterface {
         return this._isPlaying;
     }
 
-    play(song: Song) {
+    play(song: SongInterface) {
         this._currentSong = song;
         this._isPlaying = true;
     }
